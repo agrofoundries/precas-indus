@@ -6,18 +6,17 @@ import {
   Search, 
   Globe, 
   TrendingUp, 
-  Share2, 
   Target, 
   Mail, 
   BarChart4, 
   CheckCircle2, 
   ArrowRight, 
-  Sparkles, 
   Zap, 
   Code2, 
   Layers, 
   ShieldCheck,
-  MousePointerClick
+  Palette,
+  Megaphone
 } from "lucide-react";
 
 interface ServiceCategory {
@@ -35,6 +34,54 @@ interface ServiceCategory {
 }
 
 const agencyServices: ServiceCategory[] = [
+  {
+    id: "graphic-design",
+    title: "Graphic Design & Visual Brand Identity",
+    badge: "Brand & Vector Systems",
+    shortDesc: "Bespoke corporate identity, logo design, marketing collateral, vector illustrations, and high-impact social creative assets.",
+    fullDesc: "We create stunning, human-designed brand identity systems that command executive respect. From custom vector logos and brand guidelines to high-converting social graphics, ad banners, and corporate presentation decks, we establish absolute visual authority for your business.",
+    icon: Palette,
+    color: "text-rose-600",
+    bgColor: "bg-rose-50",
+    borderColor: "border-rose-200",
+    deliverables: [
+      "Custom Logo & Vector Brand Guidelines",
+      "Social Media Graphics & Ad Banners",
+      "Corporate Presentation & Pitch Decks",
+      "Print & Digital Marketing Collateral",
+      "Vector Asset Libraries & UI Design Kits",
+      "3D Brand Graphics & Motion Design Assets"
+    ],
+    metrics: [
+      { label: "Brand Impression Lift", value: "+180%" },
+      { label: "Design Delivery Velocity", value: "48 Hours" },
+      { label: "Vector Quality Standard", value: "100% Bespoke" }
+    ]
+  },
+  {
+    id: "digital-marketing",
+    title: "Full-Funnel Digital Marketing & Strategy",
+    badge: "360° Audience Scaling",
+    shortDesc: "Complete digital growth campaigns integrating paid media, social engagement, content pipelines, and influencer marketing.",
+    fullDesc: "Scale your corporate revenue through integrated multi-channel digital marketing campaigns. We construct end-to-end growth engines combining performance PPC, organic search domination, social media strategy, content marketing, and high-converting retargeting funnels.",
+    icon: Megaphone,
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-50",
+    borderColor: "border-cyan-200",
+    deliverables: [
+      "360° Multi-Channel Marketing Strategy Plan",
+      "Organic Social Media Campaign Scaling",
+      "Search Engine & Social Ad Campaigns",
+      "High-Converting Content & Copywriting",
+      "Influencer & Creator Brand Partnerships",
+      "Weekly Revenue & CAC Performance Reports"
+    ],
+    metrics: [
+      { label: "Avg. Customer Reach Lift", value: "+320%" },
+      { label: "Blended Return On Ad Spend", value: "4.5x ROAS" },
+      { label: "Lead Acquisition Cost", value: "-38% CAC" }
+    ]
+  },
   {
     id: "seo",
     title: "Search Engine Optimization (SEO)",
@@ -162,9 +209,9 @@ const agencyServices: ServiceCategory[] = [
     shortDesc: "Unified analytics dashboards tracking every single dollar spent from initial ad impression to CRM closed revenue.",
     fullDesc: "Eliminate marketing attribution guesswork. We connect GA4, Google Tag Manager, CRM data, and paid ad networks into a single real-time executive dashboard so you know exactly which campaigns drive profit.",
     icon: BarChart4,
-    color: "text-navy-900",
-    bgColor: "bg-slate-100",
-    borderColor: "border-slate-300",
+    color: "text-brand-600",
+    bgColor: "bg-blue-50",
+    borderColor: "border-blue-200",
     deliverables: [
       "GA4 & Google Tag Manager Setup",
       "CRM (Salesforce / HubSpot) Closed-Loop Sync",
@@ -182,7 +229,7 @@ const agencyServices: ServiceCategory[] = [
 ];
 
 export default function ServicesGrid() {
-  const [selectedServiceId, setSelectedServiceId] = useState<string>("seo");
+  const [selectedServiceId, setSelectedServiceId] = useState<string>("graphic-design");
 
   const currentService = agencyServices.find((s) => s.id === selectedServiceId) || agencyServices[0];
 
@@ -194,15 +241,15 @@ export default function ServicesGrid() {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/80 border border-brand-600/20 text-brand-700 text-xs font-extrabold uppercase tracking-wider">
             <Layers className="w-3.5 h-3.5" />
-            <span>Full-Service Digital Marketing Agency Capabilities</span>
+            <span>Full-Service Digital Marketing & Graphic Design Capabilities</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-navy-900 tracking-tight leading-[1.2]">
-            Comprehensive <span className="blue-gradient-text">Digital Growth Services</span>
+            Comprehensive <span className="blue-gradient-text">Digital & Design Services</span>
           </h2>
 
           <p className="text-base sm:text-lg text-navy-700 font-normal leading-relaxed max-w-2xl mx-auto tracking-normal">
-            Everything your brand needs to capture market share—from search engine optimization and high-speed web apps to multi-channel PPC campaigns and closed-loop data analytics.
+            From high-impact graphic design & brand identity systems to full-funnel digital marketing, search engine optimization, custom web engineering, and revenue attribution analytics.
           </p>
         </div>
 
@@ -305,8 +352,8 @@ export default function ServicesGrid() {
           </motion.div>
         </AnimatePresence>
 
-        {/* 6 Quick Service Grid Overview Cards */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Quick Service Grid Overview Cards */}
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {agencyServices.map((srv) => {
             const Icon = srv.icon;
             const isSelected = selectedServiceId === srv.id;
